@@ -13,9 +13,9 @@ class Query:
     def __init__(self):
         pass
     
-    def download_files(self, brickminmax, folder='.'):
-        south_photz_path = 'https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr10/south/sweep/10.1-photo-z/'
-        south_sweep_path = 'https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr10/south/sweep/10.1/'
+    def download_files(self, brickminmax, folder='.', dr=10, version=10.1):
+        south_photz_path = f'https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr{dr}/south/sweep/{version}-photo-z/'
+        south_sweep_path = f'https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr{dr}/south/sweep/{version}/'
         
         sweep_file = 'sweep-{}.fits'.format(brickminmax)
         photz_file = 'sweep-{}-pz.fits'.format(brickminmax)
@@ -70,7 +70,7 @@ class Query:
             full_cat.to_csv(savefile, index=False)
             
     
-    def find_brick(self, coord, ra_base=10, dec_base=5):
+    def find_brick(self, coord, ra_base=5, dec_base=5):
         ra1 = int(ra_base*np.floor(coord.ra.deg/ra_base))
         dec1 = int(dec_base*np.floor(coord.dec.deg/dec_base))
         ra2 = int(ra_base*np.ceil(coord.ra.deg/ra_base))
