@@ -14,8 +14,8 @@ class Query:
         pass
     
     def download_files(self, brickminmax, folder='.'):
-        south_photz_path = 'https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr8/south/sweep/8.0-photo-z/'
-        south_sweep_path = 'https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr8/south/sweep/8.0/'
+        south_photz_path = 'https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr10/south/sweep/10.1-photo-z/'
+        south_sweep_path = 'https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr10/south/sweep/10.1/'
         
         sweep_file = 'sweep-{}.fits'.format(brickminmax)
         photz_file = 'sweep-{}-pz.fits'.format(brickminmax)
@@ -176,7 +176,9 @@ if __name__ == '__main__':
     scs = SkyCoord(df.ra, df.dec, unit=u.deg)
     
     query = Query()
-    query.run_query(scs,
-                    savefile=args.outfile,
-                    search_around=args.search_around,
-                    radius=args.radius*u.arcsec)
+    query.run_query(
+        scs,
+        savefile=args.outfile,
+        search_around=args.search_around,
+        radius=args.radius*u.arcsec
+    )
